@@ -140,14 +140,14 @@
     </nav>
   </header>
 
-  <a href="index.html" class="back-btn">← Volver</a>
+  <a href="index" class="back-btn">← Volver</a>
 
   <main class="article-container">
     <!-- Panel Izquierdo -->
     <div class="left-panel">
       <h1 id="titulo">Título del Artículo</h1>
       <p id="resumen"><h2>RESUMEN:</h2>
-      </strong> Aquí va un resumen y descripción del contenido.</p>
+      </strong> En el siguiente video usted podrá conocer mas sobre la herramienta y modelo que va a descargar y utilizar en su PyME. Cada programa tiene su manual de uso, que podrá descargar siempre y cuando esté disponible. También debajo del video encontrará una descripción e información de utilidad.</p>
 
       <!-- Ventana de video / Google Drive -->
       <div id="video-container" class="video-frame">
@@ -194,6 +194,7 @@ const articulos = {
     `,
     excel: "archivos/Índices & Ratios.xlsx",
     pdf: "archivos/Índices & Ratios.pdf",
+    video: "https://youtu.be/DTedrMW-aE8?si=FQEh-_hg8GBduD6F",
   },
 
   2: {
@@ -210,6 +211,7 @@ const articulos = {
     `,
     excel: "archivos/Calculador de Punto de Equilibrio (6 Productos).xlsx",
     pdf: "archivos/Calculador de Punto de Equilibrio (6 Productos).pdf",
+    video: "https://youtu.be/OkYSK2ZMhB8?si=UB28xZc_Vkht_jSi",
   },
 
   3: {
@@ -226,6 +228,7 @@ const articulos = {
     `,
     excel: "archivos/Calculador de Intereses.xlsx",
     pdf: "archivos/Calculador de Intereses.pdf",
+    video: "https://youtu.be/fL37OS2SC8s?si=Pss1EVdp_Upc7-PA",
   },
 
   4: {
@@ -242,6 +245,7 @@ const articulos = {
     `,
     excel: "archivos/Control de Stock.xlsm",
     pdf: "archivos/Control de Stock.pdf",
+    video: "https://youtu.be/nGdhfB1b-lI?si=KJ7r7OvW8nO9Wb11",
   },
 
   5: {
@@ -258,6 +262,7 @@ const articulos = {
     `,
     excel: "archivos/Rutas Críticas - CPM - Diagrama de Gantt.xlsm",
     pdf: "archivos/Rutas Críticas - CPM - Diagrama de Gantt.pdf",
+    video: "https://youtu.be/kPa_pP6xzXs?si=IUROUn-CCQ4YTkuq",
   },
 
   6: {
@@ -274,6 +279,7 @@ const articulos = {
     `,
     excel: "archivos/EVA y EBIDTA.xlsx",
     pdf: "archivos/EVA y EBIDTA.pdf",
+    video: "https://youtu.be/IF_Ce_Cze8M?si=1t0QQePrwQGIOawm",
   },
 
   7: {
@@ -290,6 +296,7 @@ const articulos = {
     `,
     excel: "archivos/Calculador de Vogel.xlsm",
     pdf: "archivos/Calculador de Vogel.pdf",
+    video: "https://youtu.be/0TpyIG5zj1E?si=6O1xSJJADuW_PLk_",
   },
 
   8: {
@@ -306,6 +313,7 @@ const articulos = {
     `,
     excel: "archivos/Modelos de Lineas de Espera.xlsx",
     pdf: "archivos/Modelos de Lineas de Espera.pdf",
+    video: "https://youtu.be/PMX75m4-s9A?si=LAL40bcFVq6JB0mI",
   },
 
   9: {
@@ -322,6 +330,7 @@ const articulos = {
     `,
     excel: "archivos/Plantilla para DJ Ganancias.xlsm",
     pdf: "archivos/Plantilla para DJ Ganancias.pdf",
+    video: "https://youtu.be/4KjR-GDs6E4?si=rbk4Zc4pJY9K2DnW",
   },
 
   10: {
@@ -338,6 +347,7 @@ const articulos = {
     `,
     excel: "archivos/Presupuestos.xlsx",
     pdf: "archivos/Presupuestos.pdf",
+    video: "https://youtu.be/1dwO6y1MbMQ?si=PfXCevToo36fKerM",
   },
 
   11: {
@@ -354,6 +364,7 @@ const articulos = {
     `,
     excel: "archivos/Sistema contable Monotributistas 5.1.0.xlsm",
     pdf: "archivos/Sistema Contable para Monotributistas.pdf",
+    video: "https://drive.google.com/file/d/1-G5t2g8tZhxl29elOuGsCjMGgRHBmjIa/view?usp=sharing",
   },
 
   12: {
@@ -370,6 +381,7 @@ const articulos = {
     `,
     excel: "archivos/SISTEMA CONTABLE V3.1 Especial Ganancias.xlsm",
     pdf: "archivos/SISTEMA CONTABLE V3.1 Especial Ganancias.pdf",
+    video: "https://youtu.be/sDgU7olBmTM?si=6nhmGB38C1DNnVq_",
   },
 
   13: {
@@ -386,6 +398,7 @@ const articulos = {
     `,
     excel: "archivos/Sistema de Honorarios (Instalar).rar",
     pdf: "archivos/Modo de Uso Sistema Honorarios.pdf",
+    video: "https://youtu.be/NGfB9mAlATg?si=_jdFhA_AuxEZIJjV",
   },
 
   14: {
@@ -416,6 +429,11 @@ if (articulo) {
   document.getElementById("descripcion").innerHTML = articulo.descripcion;
   document.getElementById("excel-link").href = articulo.excel;
   document.getElementById("pdf-link").href = articulo.pdf;
+
+  // 👇 NUEVO: si existe un enlace de video, se inserta en el contenedor
+  if (articulo.video) {
+    document.getElementById("video-container").innerHTML = `<iframe width="100%" height="500" src="${articulo.video}" frameborder="0" allowfullscreen></iframe>`;
+  }
 }
   </script>
 
