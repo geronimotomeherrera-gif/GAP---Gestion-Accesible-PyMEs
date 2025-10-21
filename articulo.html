@@ -140,7 +140,7 @@
     </nav>
   </header>
 
-  <a href="index" class="back-btn">← Volver</a>
+  <a href="https://geronimotomeherrera-gif.github.io/GAP---Gestion-Accesible-PyMEs/Index" class="back-btn">← Volver</a>
 
   <main class="article-container">
     <!-- Panel Izquierdo -->
@@ -398,44 +398,66 @@ const articulos = {
     `,
     excel: "archivos/Sistema de Honorarios (Instalar).rar",
     pdf: "archivos/Modo de Uso Sistema Honorarios.pdf",
-    video: "https://youtu.be/NGfB9mAlATg?si=_jdFhA_AuxEZIJjV",
+    video: "https://youtu.be/NGfB9mAlATg?si=_jdFhFQ-C4E4aI4M",
   },
 
   14: {
-    titulo: "VAN y TIR",
-    resumen: "Calcula el Valor Actual Neto y la Tasa Interna de Retorno de proyectos de inversión.",
+    titulo: "Sistema de Sueldos",
+    resumen: "Calcula remuneraciones, cargas sociales y aportes automáticamente.",
     descripcion: `
-      Esta plantilla automatiza el cálculo de VAN y TIR, dos de los indicadores más utilizados en evaluación de proyectos. 
+      Este archivo permite registrar empleados, calcular sueldos netos y brutos, cargas sociales, aportes y liquidaciones especiales. 
       <br><br>
-      Permite ingresar flujos de caja, tasas de descuento y obtener resultados comparativos. 
+      Genera reportes detallados y gráficos de distribución salarial. 
       <br><br>
-      Es ideal para estudiantes o empresas que evalúan alternativas de inversión. 
+      Ideal para PyMEs, contadores y administradores de personal. 
       <br><br>
-      Incluye interpretación automática y gráficos de sensibilidad.
+      Incluye ejemplos y fórmulas explicativas para facilitar la comprensión.
     `,
-    excel: "archivos/VAN y TIR.xlsx",
-    pdf: "archivos/VAN y TIR.pdf",
-    video: "https://www.youtube.com/embed/qHAAxuRwyhY",
-  }
+    excel: "archivos/Sistema de Sueldos.xlsm",
+    pdf: "archivos/Sistema de Sueldos.pdf",
+    video: "https://youtu.be/6vXxY2M-VxA?si=U1s7qgqX6pQyPBRr",
+  },
 };
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-const articulo = articulos[id];
+const urlParams = new URLSearchParams(window.location.search);
+const articuloId = urlParams.get("id") || "1";
+const articulo = articulos[articuloId];
 
-if (articulo) {
-  document.getElementById("titulo").innerText = articulo.titulo;
-  document.getElementById("resumen").innerHTML = "<strong>Resumen:</strong> " + articulo.resumen;
-  document.getElementById("descripcion").innerHTML = articulo.descripcion;
-  document.getElementById("excel-link").href = articulo.excel;
-  document.getElementById("pdf-link").href = articulo.pdf;
+document.getElementById("titulo").textContent = articulo.titulo;
+document.getElementById("resumen").innerHTML = "<h2>RESUMEN:</h2>" + articulo.resumen;
+document.getElementById("descripcion").innerHTML = articulo.descripcion;
+document.getElementById("excel-link").href = articulo.excel;
+document.getElementById("pdf-link").href = articulo.pdf;
 
-  // 👇 NUEVO: si existe un enlace de video, se inserta en el contenedor
-  if (articulo.video) {
-    document.getElementById("video-container").innerHTML = `<iframe width="100%" height="500" src="${articulo.video}" frameborder="0" allowfullscreen></iframe>`;
-  }
+// --- Cambio 1: Youtube embed automático ---
+const videoContainer = document.getElementById("video-container");
+if (articulo.video) {
+  let videoUrl = articulo.video;
+  if (videoUrl.includes("youtu.be")) {
+    const id = videoUrl.split("/").pop().split("?")[0];
+    videoUrl = `https://www.youtube.com/embed/${id}`;
+  } else if (videoUrl.includes("youtube.com/watch")) {
+    const params = new URL(videoUrl).searchParams;
+    const id = params.get("v");
+    videoUrl = `https://www.youtube.com/embed/${id}`;
+  } 
+  const iframe = document.createElement("iframe");
+  iframe.src = videoUrl;
+  iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+  iframe.allowFullscreen = true;
+  iframe.style.width = "100%";
+  iframe.style.height = "500px";
+  videoContainer.innerHTML = "";
+  videoContainer.appendChild(iframe);
 }
-  </script>
+
+// --- Cambio 2: Botón volver a index completo ---
+const backBtn = document.querySelector(".back-btn");
+backBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.location.href = "https://geronimotomeherrera-gif.github.io/GAP---Gestion-Accesible-PyMEs/Index";
+});
+</script>
 
 </body>
 </html>
