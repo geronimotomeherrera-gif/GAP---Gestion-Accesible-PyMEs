@@ -1,9 +1,96 @@
+/* === PRELOADER === */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 0.5s ease forwards 3.8s;
+}
+
+#preloader .logo {
+  width: 160px;
+  opacity: 0;
+  animation: bounceLogo 3s ease forwards;
+}
+
+.loading-bar {
+  width: 0%;
+  height: 5px;
+  background: #007BFF;
+  margin-top: 25px;
+  border-radius: 5px;
+  animation: loadBar 3s ease forwards;
+}
+
+@keyframes bounceLogo {
+  0% { transform: scale(0.5); opacity: 0; }
+  20% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(0.9); }
+  80% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes loadBar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* === VIDEO GRID (ajuste de imágenes) === */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  padding: 30px;
+}
+
+.video-item {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.2s ease;
+}
+
+.video-item:hover {
+  transform: scale(1.03);
+}
+
+/* 🔹 Ajuste para que las imágenes no se recorten */
+.video-item img {
+  width: 100%;
+  height: 220px;           /* un poco más alto */
+  object-fit: contain;     /* evita recorte */
+  background: #fff;        /* relleno blanco si sobra espacio */
+}
+
+.video-item h3 {
+  font-size: 1em;
+  text-align: center;
+  padding: 12px;
+  background: #fafafa;
+}
+
 /* === ESTILO GENERAL === */
 body {
   font-family: 'Segoe UI', Roboto, Arial, sans-serif;
   margin: 0;
-  background: #0e0e0e; /* Fondo principal más profundo */
-  color: #eaeaea; /* Texto claro */
+  background: #0e0e0e;
+  color: #eaeaea;
   line-height: 1.6;
 }
 
@@ -54,44 +141,6 @@ nav .active {
   background: #0091b2;
 }
 
-/* === GRID PRINCIPAL (Index) === */
-main.video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  padding: 40px;
-}
-
-.video-item {
-  background: #1b1b1b;
-  border: 1px solid #2b2b2b;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-  color: #eaeaea;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.video-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-  border-color: #00b4d8;
-}
-
-.video-item img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.video-item h3 {
-  margin: 10px 0 0;
-  font-size: 1rem;
-  color: #f5f5f5;
-}
-
 /* === FOOTER === */
 footer {
   background: #111;
@@ -101,127 +150,88 @@ footer {
   font-size: 0.9em;
   border-top: 1px solid #2a2a2a;
 }
-
-/* === ARTÍCULO === */
-.articulo-container {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 40px;
-  gap: 40px;
-  background: #0e0e0e;
-}
-
-.articulo-texto {
-  flex: 1;
-  min-width: 320px;
-  background: #1a1a1a;
-  padding: 25px;
-  border-radius: 12px;
-  border: 1px solid #2a2a2a;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-
-.articulo-texto h1 {
-  color: #00b4d8;
-  font-size: 1.8em;
-  margin-bottom: 10px;
-}
-
-.articulo-texto h2 {
-  margin-top: 25px;
-  color: #ddd;
-}
-
-.articulo-texto iframe {
+/* === PRELOADER === */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 220px;
-  border: none;
-  border-radius: 8px;
-  background: #0b0b0b;
-  margin: 20px 0;
-}
-
-.articulo-texto p {
-  color: #ccc;
-  margin-bottom: 14px;
-  text-align: justify;
-}
-
-/* Descargas */
-.articulo-descargas {
-  flex: 0 0 260px;
+  height: 100%;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 0.5s ease forwards 3.8s;
 }
 
-.articulo-descargas a {
-  background: #00b4d8;
-  color: #fff;
-  padding: 12px;
-  border-radius: 8px;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.2s ease;
+#preloader .logo {
+  width: 160px;
+  opacity: 0;
+  animation: bounceLogo 3s ease forwards;
 }
 
-.articulo-descargas a:hover {
-  background: #0091b2;
+.loading-bar {
+  width: 0%;
+  height: 5px;
+  background: #007BFF;
+  margin-top: 25px;
+  border-radius: 5px;
+  animation: loadBar 3s ease forwards;
 }
 
-/* === LOGIN === */
-.login-container {
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 35px;
-  background: #1b1b1b;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+@keyframes bounceLogo {
+  0% { transform: scale(0.5); opacity: 0; }
+  20% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(0.9); }
+  80% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes loadBar {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* === VIDEO GRID (ajuste de imágenes) === */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  padding: 30px;
+}
+
+.video-item {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
   border-radius: 12px;
-  color: #f0f0f0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  text-decoration: none;
+  color: #000;
+  transition: transform 0.2s ease;
 }
 
-.login-container h2 {
+.video-item:hover {
+  transform: scale(1.03);
+}
+
+.video-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain; /* 🔹 antes estaba cover */
+  background: #f4f4f4;
+}
+
+.video-item h3 {
+  font-size: 1em;
   text-align: center;
-  margin-bottom: 20px;
-  color: #00b4d8;
-}
-
-.login-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.login-container input {
   padding: 12px;
-  border: 1px solid #333;
-  border-radius: 8px;
-  background: #111;
-  color: #fff;
-}
-
-.login-container input::placeholder {
-  color: #777;
-}
-
-.login-container button {
-  padding: 12px;
-  background: #00b4d8;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: background 0.2s ease;
-}
-
-.login-container button:hover {
-  background: #0091b2;
-}
-
-.login-container .extras {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9em;
-  color: #aaa;
+  background: #fafafa;
 }

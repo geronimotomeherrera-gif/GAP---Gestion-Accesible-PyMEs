@@ -6,17 +6,148 @@
   <title>Portal de Herramientas</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* ----------- PANTALLA DE CARGA ----------- */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #preloader img {
+      width: 240px;
+      animation: bounceIn 1.6s ease-in-out;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 6px;
+      background: #353535;
+      border-radius: 3px;
+      margin-top: 20px;
+      animation: loadBar 2.8s ease-in-out forwards;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      40% {
+        transform: scale(1.3);
+        opacity: 1;
+      }
+      60% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes loadBar {
+      0% { width: 0; }
+      100% { width: 220px; }
+    }
+
+    /* ----------- HEADER MODERNO ----------- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2b2b2b;
+      color: white;
+      padding: 10px 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #f2f2f2;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #00bcd4;
+    }
+
+    /* ----------- CUADROS PRINCIPALES ----------- */
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f6f7;
+      margin: 0;
+    }
+
     .welcome-bar {
       background: #353535;
       color: #fdfcfc;
-      padding: 12px 30px;
-      font-size: 1.5em;
-      border-bottom: 1px solid #333;
+      padding: 16px 30px;
+      font-size: 1.3em;
       text-align: left;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .video-item {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .video-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .video-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .video-item h3 {
+      padding: 10px 15px;
+      font-size: 1.1em;
+      color: #333;
+      font-weight: 600;
+    }
+
+    footer {
+      background: #2b2b2b;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
+  <!-- 🔹 PANTALLA DE CARGA -->
+  <div id="preloader">
+    <img src="imagenes/Logo.jpg" alt="Logo GAP">
+    <div class="progress-bar"></div>
+    <audio id="bounceSound" src="archivos/rebote.mp3" preload="auto"></audio>
+
+  </div>
+
   <header>
     <div class="logo">📊 Gestión Accesible para PyMEs</div>
     <nav>
@@ -29,15 +160,12 @@
     </nav>
   </header>
 
-  <!-- 🔹 Nueva barra de bienvenida -->
   <div class="welcome-bar">
-    <strong>Bienvenido!
-      <br>
-    </strong> Escoja el programa que desea descargar para gestionar su PyME.
+    <strong>Bienvenido!</strong><br> Escoja el programa que desea descargar para gestionar su PyME.
   </div>
 
   <main class="video-grid">
-    <!-- 14 elementos estilo YouTube -->
+    <!-- 🔹 LOS 14 ELEMENTOS -->
     <a href="articulo.html?id=1" class="video-item">
       <img src="imagenes/indices-ratios.jpg" alt="Índices & Ratios">
       <h3>Índices & Ratios</h3>
@@ -68,10 +196,10 @@
     </a>
     <a href="articulo.html?id=8" class="video-item">
       <img src="imagenes/lineas-espera.jpg" alt="Modelos de Líneas de Espera">
-      <h3>Modelos de Lineas de Espera</h3>
+      <h3>Modelos de Líneas de Espera</h3>
     </a>
     <a href="articulo.html?id=9" class="video-item">
-      <img src="imagenes/plantilla-general.jpg" alt="Plantilla para DJ Ganancias">
+      <img src="imagenes/plantilla-general.jpg" alt="Plantilla General">
       <h3>Plantilla General</h3>
     </a>
     <a href="articulo.html?id=10" class="video-item">
@@ -99,5 +227,16 @@
   <footer>
     <p>© 2025 Portal de Herramientas</p>
   </footer>
+
+  <script>
+    // 🔹 Reproduce sonido al aparecer el logo
+    const sound = document.getElementById('bounceSound');
+    window.addEventListener('load', () => {
+      sound.play();
+      setTimeout(() => {
+        document.getElementById('preloader').style.display = 'none';
+      }, 2800); // tiempo total del efecto
+    });
+  </script>
 </body>
 </html>
