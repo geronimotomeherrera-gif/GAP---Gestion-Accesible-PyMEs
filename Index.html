@@ -20,7 +20,7 @@
 
     #preloader img {
       width: 240px;
-      animation: bounceIn 5.2s ease-in-out;
+      animation: bounceIn 4.2s ease-in-out;
     }
 
     .progress-bar {
@@ -28,7 +28,7 @@
       height: 6px;
       background: #353535;
       border-radius: 3px;
-      margin-top: 30px;
+      margin-top: 20px;
       animation: loadBar 2.8s ease-in-out forwards;
     }
 
@@ -79,7 +79,11 @@
     @media (max-width: 720px) {
       .search-wrap input[type="search"] { width: calc(100% - 32px); }
     }
-  </style>
+        /* 🔹 Márgenes generales para contenido */
+        main, .contenido {
+          padding: 40px 60px;
+         }
+      </style>
 </head>
 <body>
   <!-- 🔹 PANTALLA DE CARGA -->
@@ -90,13 +94,16 @@
   </div>
 
   <header>
-    <div class="logo">📊 Gestión Accesible para PyMEs</div>
+    <div class="logo">
+      <img src="imagenes/Logo.jpg" alt="Logo GAP" style="height:38px; vertical-align:middle; margin-right:8px; border-radius:6px;">
+      <span>Gestión Accesible para PyMEs</span>
+    </div>
     <nav>
       <a href="index.html" class="active">Inicio</a>
-      <a href="#">Quienes Somos</a>
-      <a href="#">Nuestros Clientes</a>
-      <a href="#">Nuestros Servicios</a>
-      <a href="#">Contacto</a>
+      <a href="quienes-somos.html">Quienes Somos</a>
+      <a href="nuestros-clientes.html">Nuestros Clientes</a>
+      <a href="nuestros-servicios.html">Nuestros Servicios</a>
+      <a href="contacto.html">Contacto</a>
       <a href="login.html" class="login-btn">Iniciar Sesión</a>
     </nav>
   </header>
@@ -181,7 +188,10 @@
       // Asegura que el sonido se pueda reproducir incluso sin interacción previa
       const playPromise = sound.play();
       if (playPromise !== undefined) {
-        playPromise.catch();
+        playPromise.catch(() => {
+          // En caso de bloqueo automático, reproduce tras una pequeña interacción
+          document.addEventListener('click', () => sound.play(), { once: true });
+        });
       }
 
       // espera a que termine la animación de la barra o, como fallback, 5s
@@ -193,14 +203,14 @@
        removed = true;
        const pre = document.getElementById('preloader');
        // efecto de fundido suave antes de ocultar
-       pre.style.transition = 'opacity 3.28s ease';
+       pre.style.transition = 'opacity 0.28s ease';
       pre.style.opacity = '0';
        setTimeout(() => pre.style.display = 'none', 300);
      }
 
      // si la barra existe, espera su end de animación
     if (progressBar) {
-       progressBar.addEventListener('animationend', () => setTimeout(hidePreloader, 2000), { once: true });
+       progressBar.addEventListener('animationend', hidePreloader, { once: true });
        // fallback por si algo falla (ej: animaciones deshabilitadas)
        setTimeout(hidePreloader, 5000);
      } else {
@@ -223,6 +233,7 @@
         link: el.getAttribute('href'),
       };
     });
+
 
     // escucha input
     searchInput.addEventListener('input', () => {

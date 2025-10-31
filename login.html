@@ -3,21 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
+  <title>Iniciar Sesión | GAP - Gestión Accesible para PyMEs</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="login-container">
-    <h2>Iniciar Sesión</h2>
-    <form>
-      <input type="text" placeholder="Usuario" required />
-      <input type="password" placeholder="Contraseña" required />
-      <button type="submit">Ingresar</button>
-      <div class="extras">
-        <a href="#">¿Olvidaste tu contraseña?</a>
-        <a href="#">Registrarse</a>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="logo-gap.png" alt="Logo GAP">
+        <h1>GAP - Gestión Accesible para PyMEs</h1>
       </div>
-    </form>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+        <li><a href="nuestros-clientes.html">Nuestros Clientes</a></li>
+        <li><a href="nuestros-servicios.html">Nuestros Servicios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="login.html" class="active">Iniciar Sesión</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenido">
+    <section>
+      <h2>Iniciar Sesión</h2>
+      <p>
+        En futuras versiones del portal, esta sección permitirá a los usuarios registrados 
+        acceder a funcionalidades personalizadas, descargar nuevos sistemas y realizar seguimiento 
+        de sus descargas.
+      </p>
+
+      <form class="form-login">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="usuario@ejemplo.com" required>
+
+        <label>Contraseña</label>
+        <input type="password" placeholder="••••••••" required>
+
+        <button type="submit" class="btn-principal">Acceder</button>
+      </form>
+
+      <p class="nota-login">
+        Actualmente, todas las herramientas son de acceso libre. 
+        No se requiere iniciar sesión para descargarlas.
+      </p>
+    </section>
   </main>
+
+  <footer>
+    <p>© 2025 GAP - Gestión Accesible para PyMEs | Desarrollado por Gerónimo Tomé Herrera</p>
+  </footer>
 </body>
 </html>
