@@ -6,18 +6,20 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #ffffff;   /* <-- blanco, sólo aquí */
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  animation: fadeOut 0.5s ease forwards 3.8s;
+  opacity: 1;
+  transition: opacity 0.8s ease; /* <- esto hace desaparecer suavemente */
 }
 
 #preloader img {
   width: 160px;
   opacity: 0;
+  /* mantiene visible el logo tras la animación */
   animation: bounceLogo 3s ease forwards;
 }
 
@@ -30,13 +32,13 @@
   animation: loadBar 3s ease forwards;
 }
 
-/* animaciones de preloader (mantengo las tuyas) */
+/* animaciones de preloader (mantengo las tuyas, pero ahora con opacity final explícito) */
 @keyframes bounceLogo {
   0% { transform: scale(0.5); opacity: 0; }
   20% { transform: scale(1.2); opacity: 1; }
-  50% { transform: scale(0.9); }
-  80% { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.9); opacity: 1; }
+  80% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; } /* se mantiene visible */
 }
 @keyframes loadBar {
   0% { width: 0%; }
