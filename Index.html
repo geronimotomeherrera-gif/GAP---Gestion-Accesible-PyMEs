@@ -54,98 +54,39 @@
       100% { width: 220px; }
     }
 
-    /* ----------- HEADER MODERNO ----------- */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #2b2b2b;
-      color: white;
-      padding: 10px 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-
-    .logo {
-      font-size: 1.4em;
-      font-weight: bold;
-    }
-
-    nav a {
-      color: #f2f2f2;
-      text-decoration: none;
-      margin: 0 12px;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    nav a:hover {
-      color: #00bcd4;
-    }
-
-    /* ----------- CUADROS PRINCIPALES ----------- */
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: #f5f6f7;
-      margin: 0;
-    }
-
-    .welcome-bar {
-      background: #353535;
-      color: #fdfcfc;
-      padding: 16px 30px;
-      font-size: 1.3em;
-      text-align: left;
-    }
-
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
-    }
-
-    .video-item {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
+    /* ===== Estética ligera para la barra de búsqueda (pequeño añadido) ===== */
+    .search-wrap input[type="search"] {
+      width: 720px;
+      max-width: calc(100% - 40px);
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,188,212,0.18);
+      background: #f6f7f8;
+      color: #111;
+      outline: none;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-size: 1rem;
+      transition: box-shadow 0.16s ease, transform 0.12s ease;
     }
-
-    .video-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    .search-wrap input[type="search"]:focus {
+      box-shadow: 0 8px 20px rgba(0,188,212,0.12);
+      transform: translateY(-1px);
+      border-color: rgba(0,188,212,0.35);
     }
-
-    .video-item img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
+    .search-wrap input[type="search"]::placeholder {
+      color: rgba(0,0,0,0.45);
     }
-
-    .video-item h3 {
-      padding: 10px 15px;
-      font-size: 1.1em;
-      color: #333;
-      font-weight: 600;
-    }
-
-    footer {
-      background: #2b2b2b;
-      color: #f2f2f2;
-      text-align: center;
-      padding: 12px 0;
-      font-size: 0.9em;
+    @media (max-width: 720px) {
+      .search-wrap input[type="search"] { width: calc(100% - 32px); }
     }
   </style>
 </head>
 <body>
   <!-- 🔹 PANTALLA DE CARGA -->
   <div id="preloader">
-    <img src="imagenes/Logo.jpg" alt="Logo GAP">
+    <img src="imagenes/Logo.jpg" alt="Logo GAP" />
     <div class="progress-bar"></div>
     <audio id="bounceSound" src="archivos/rebote.mp3" preload="auto"></audio>
-
   </div>
 
   <header>
@@ -160,65 +101,70 @@
     </nav>
   </header>
 
-  <div class="welcome-bar">
-    <strong>Bienvenido!</strong><br> Escoja el programa que desea descargar para gestionar su PyME.
+  <!-- ===== BARRA DE BÚSQUEDA (REEMPLAZÓ el texto "Escoja el programa...") ===== -->
+  <div class="welcome-bar search-wrap">
+    <input id="searchInput" type="search" placeholder="Buscar herramientas por título o palabra..." aria-label="Buscar herramientas">
   </div>
 
-  <main class="video-grid">
-    <!-- 🔹 LOS 14 ELEMENTOS -->
-    <a href="articulo.html?id=1" class="video-item">
+  <!-- ===== CONTENEDOR DE RESULTADOS (estilo lista - oculta la grilla cuando se usa búsqueda) ===== -->
+  <div id="searchResults" class="search-results hidden" aria-live="polite"></div>
+
+  <main class="video-grid" id="videoGrid">
+    <!-- Mantuve exactamente los 14 elementos y sus atributos tal como estaban
+         Solo agregué data-desc donde corresponda para que la búsqueda filtre por descripción también -->
+    <a href="articulo.html?id=1" class="video-item" data-desc="Herramienta para calcular indices y ratios financieros">
       <img src="imagenes/indices-ratios.jpg" alt="Índices & Ratios">
       <h3>Índices & Ratios</h3>
     </a>
-    <a href="articulo.html?id=2" class="video-item">
+    <a href="articulo.html?id=2" class="video-item" data-desc="Calculador de punto de equilibrio para 6 productos">
       <img src="imagenes/punto-equilibrio.jpg" alt="Punto de Equilibrio">
       <h3>Calculador de Punto de Equilibrio (6 Productos)</h3>
     </a>
-    <a href="articulo.html?id=3" class="video-item">
+    <a href="articulo.html?id=3" class="video-item" data-desc="Calculador de intereses simples y compuestos">
       <img src="imagenes/intereses.jpg" alt="Calculador de Intereses">
       <h3>Calculador de Intereses</h3>
     </a>
-    <a href="articulo.html?id=4" class="video-item">
+    <a href="articulo.html?id=4" class="video-item" data-desc="Control y gestión de stock para PyMEs">
       <img src="imagenes/control-stock.jpg" alt="Control de Stock">
       <h3>Control de Stock</h3>
     </a>
-    <a href="articulo.html?id=5" class="video-item">
+    <a href="articulo.html?id=5" class="video-item" data-desc="Rutas criticas, CPM y diagramas de Gantt">
       <img src="imagenes/rutas-criticas.jpg" alt="Rutas Críticas - CPM - Diagrama de Gantt">
       <h3>Rutas Críticas - CPM - Diagrama de Gantt</h3>
     </a>
-    <a href="articulo.html?id=6" class="video-item">
+    <a href="articulo.html?id=6" class="video-item" data-desc="EVA y EBIDTA para evaluacion financiera">
       <img src="imagenes/eva-ebidta.jpg" alt="EVA y EBIDTA">
       <h3>EVA y EBIDTA</h3>
     </a>
-    <a href="articulo.html?id=7" class="video-item">
+    <a href="articulo.html?id=7" class="video-item" data-desc="Calculador metodo de Vogel para transporte">
       <img src="imagenes/vogel.jpg" alt="Calculador de Vogel">
       <h3>Calculador de Vogel</h3>
     </a>
-    <a href="articulo.html?id=8" class="video-item">
+    <a href="articulo.html?id=8" class="video-item" data-desc="Modelos de lineas de espera y colas (teoria de colas)">
       <img src="imagenes/lineas-espera.jpg" alt="Modelos de Líneas de Espera">
       <h3>Modelos de Líneas de Espera</h3>
     </a>
-    <a href="articulo.html?id=9" class="video-item">
+    <a href="articulo.html?id=9" class="video-item" data-desc="Plantilla general de gestion para PyMEs">
       <img src="imagenes/plantilla-general.jpg" alt="Plantilla General">
       <h3>Plantilla General</h3>
     </a>
-    <a href="articulo.html?id=10" class="video-item">
+    <a href="articulo.html?id=10" class="video-item" data-desc="Herramientas para presupuestos y presupuestacion">
       <img src="imagenes/presupuestos.jpg" alt="Presupuestos">
       <h3>Presupuestos</h3>
     </a>
-    <a href="articulo.html?id=11" class="video-item">
+    <a href="articulo.html?id=11" class="video-item" data-desc="Sistema contable para monotributistas version 5.1.0">
       <img src="imagenes/Sistema Contable para Monotributistas.jpg" alt="Sistema contable Monotributistas 5.1.0.xlsm">
       <h3>Sistema contable Monotributistas 5.1.0.xlsm</h3>
     </a>
-    <a href="articulo.html?id=12" class="video-item">
+    <a href="articulo.html?id=12" class="video-item" data-desc="SISTEMA CONTABLE V3.1 con especial ganancias">
       <img src="imagenes/sistema-contable.jpg" alt="SISTEMA CONTABLE V3.1 Especial Ganancias">
       <h3>SISTEMA CONTABLE V3.1 Especial Ganancias</h3>
     </a>
-    <a href="articulo.html?id=13" class="video-item">
+    <a href="articulo.html?id=13" class="video-item" data-desc="Sistema de honorarios 1.7 para profesionales">
       <img src="imagenes/honorarios.jpg" alt="Sistema de Honorarios 1.7">
       <h3>Sistema de Honorarios 1.7</h3>
     </a>
-    <a href="articulo.html?id=14" class="video-item">
+    <a href="articulo.html?id=14" class="video-item" data-desc="Analisis VAN y TIR para proyectos de inversion">
       <img src="imagenes/van-tir.jpg" alt="VAN y TIR">
       <h3>VAN y TIR</h3>
     </a>
@@ -229,13 +175,121 @@
   </footer>
 
   <script>
-    // 🔹 Reproduce sonido al aparecer el logo
+        // 🔹 Reproduce sonido al aparecer el logo
     const sound = document.getElementById('bounceSound');
     window.addEventListener('load', () => {
-      sound.play();
-      setTimeout(() => {
-        document.getElementById('preloader').style.display = 'none';
-      }, 2800); // tiempo total del efecto
+      // Asegura que el sonido se pueda reproducir incluso sin interacción previa
+      const playPromise = sound.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // En caso de bloqueo automático, reproduce tras una pequeña interacción
+          document.addEventListener('click', () => sound.play(), { once: true });
+        });
+      }
+
+      // espera a que termine la animación de la barra o, como fallback, 5s
+     const progressBar = document.querySelector('.progress-bar');
+     let removed = false;
+
+     function hidePreloader() {
+       if (removed) return;
+       removed = true;
+       const pre = document.getElementById('preloader');
+       // efecto de fundido suave antes de ocultar
+       pre.style.transition = 'opacity 0.28s ease';
+      pre.style.opacity = '0';
+       setTimeout(() => pre.style.display = 'none', 300);
+     }
+
+     // si la barra existe, espera su end de animación
+    if (progressBar) {
+       progressBar.addEventListener('animationend', hidePreloader, { once: true });
+       // fallback por si algo falla (ej: animaciones deshabilitadas)
+       setTimeout(hidePreloader, 5000);
+     } else {
+       setTimeout(hidePreloader, 4200);
+     }
+
+    }); /* <-- CIERRE agregado: cierra window.addEventListener('load', ... ) */
+
+    // ---- BÚSQUEDA (filtra por título o data-desc) ----
+    const searchInput = document.getElementById('searchInput');
+    const videoGrid = document.getElementById('videoGrid');
+    const searchResults = document.getElementById('searchResults');
+
+    // Recolecta items desde DOM (manteniendo estructura original)
+    const items = Array.from(document.querySelectorAll('.video-item')).map(el => {
+      return {
+        title: el.querySelector('h3').innerText.trim(),
+        desc: (el.dataset.desc || '').trim(),
+        img: el.querySelector('img').getAttribute('src'),
+        link: el.getAttribute('href'),
+      };
+    });
+
+    // escucha input
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      if (!q) {
+        // restaurar grilla original
+        videoGrid.classList.remove('hidden');
+        searchResults.classList.add('hidden');
+        searchResults.innerHTML = '';
+        return;
+      }
+
+      // filtrar por título o descripción (cualquier palabra)
+      const filtered = items.filter(it => {
+        return it.title.toLowerCase().includes(q) || it.desc.toLowerCase().includes(q);
+      });
+
+      // construir resultados (una sola columna, estilo youtube)
+      searchResults.innerHTML = filtered.map(it => {
+        // escapado mínimo para atributos
+        const t = it.title.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const d = it.desc.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        return `
+          <a href="${it.link}" class="result-item fade-link">
+            <img src="${it.img}" alt="">
+            <div class="info">
+              <h4>${t}</h4>
+              <p>${d}</p>
+            </div>
+          </a>
+        `;
+      }).join('');
+
+      // mostrar resultados y ocultar la grilla
+      videoGrid.classList.add('hidden');
+      searchResults.classList.remove('hidden');
+
+      // agregar comportamiento de fade a los links recién creados
+      attachFadeToResults();
+    });
+
+    // ---- TRANSICIÓN SUAVE (fade) para enlaces a artículos ----
+    function attachFadeToResults() {
+      document.querySelectorAll('a.fade-link').forEach(a => {
+        // evitar agregar múltiples listeners
+        if (a.dataset.fadeBound) return;
+        a.dataset.fadeBound = '1';
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          const href = a.href;
+          document.body.classList.add('fade-out');
+          setTimeout(() => window.location.href = href, 280);
+        });
+      });
+    }
+
+    // también aplicamos fade a los items de la grilla (para navegación desde grilla)
+    document.querySelectorAll('.video-item').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const href = a.href;
+        document.body.classList.add('fade-out');
+        setTimeout(() => window.location.href = href, 280);
+      });
     });
   </script>
 </body>
