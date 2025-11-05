@@ -33,20 +33,10 @@
     }
 
     @keyframes bounceIn {
-      0% {
-        transform: scale(0.6);
-        opacity: 0;
-      }
-      40% {
-        transform: scale(1.3);
-        opacity: 1;
-      }
-      60% {
-        transform: scale(0.9);
-      }
-      100% {
-        transform: scale(1);
-      }
+      0% { transform: scale(0.6); opacity: 0; }
+      40% { transform: scale(1.3); opacity: 1; }
+      60% { transform: scale(0.9); }
+      100% { transform: scale(1); }
     }
 
     @keyframes loadBar {
@@ -54,7 +44,13 @@
       100% { width: 220px; }
     }
 
-    /* ===== Estética ligera para la barra de búsqueda (pequeño añadido) ===== */
+    /* ===== Barra de búsqueda ===== */
+    .search-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px; /* NUEVO: separa la lupa */
+    }
     .search-wrap input[type="search"] {
       width: 720px;
       max-width: calc(100% - 40px);
@@ -76,14 +72,35 @@
     .search-wrap input[type="search"]::placeholder {
       color: rgba(0,0,0,0.45);
     }
-    @media (max-width: 720px) {
-      .search-wrap input[type="search"] { width: calc(100% - 32px); }
+
+    /* NUEVO: estilo lupa */
+    .search-icon {
+      font-size: 1.2rem;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.2s ease;
     }
-        /* 🔹 Márgenes generales para contenido */
-        main, .contenido {
-          padding: 40px 60px;
-         }
-      </style>
+    .search-icon:hover {
+      transform: scale(1.15);
+    }
+
+    /* NUEVO: efecto hover para tarjetas */
+    .video-item {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+      border: 1px solid transparent;
+      border-radius: 8px;
+    }
+    .video-item:hover {
+      border-color: rgba(0,188,212,0.4);
+      box-shadow: 0 0 12px rgba(0,188,212,0.25);
+      transform: translateY(-3px);
+    }
+
+    /* 🔹 Márgenes generales para contenido */
+    main, .contenido {
+      padding: 40px 60px;
+    }
+  </style>
 </head>
 <body>
   <!-- 🔹 PANTALLA DE CARGA -->
@@ -108,9 +125,10 @@
     </nav>
   </header>
 
-  <!-- ===== BARRA DE BÚSQUEDA (REEMPLAZÓ el texto "Escoja el programa...") ===== -->
+  <!-- ===== BARRA DE BÚSQUEDA ===== -->
   <div class="welcome-bar search-wrap">
     <input id="searchInput" type="search" placeholder="Buscar herramientas por título o palabra..." aria-label="Buscar herramientas">
+    <span class="search-icon">🔍</span> <!-- NUEVO -->
   </div>
 
   <!-- ===== CONTENEDOR DE RESULTADOS (estilo lista - oculta la grilla cuando se usa búsqueda) ===== -->

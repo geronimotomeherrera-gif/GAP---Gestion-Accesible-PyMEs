@@ -104,6 +104,20 @@ nav a:hover {
   background: #141414;
   border-bottom: 1px solid rgba(255,255,255,0.02);
 }
+
+/* 🔍 NUEVO: ícono de lupa al lado del buscador */
+.search-icon {
+  font-size: 1.3rem;
+  color: #e0e0e0;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.search-icon:hover {
+  transform: scale(1.15);
+  color: #00bcd4;
+}
+
 .search-wrap input[type="search"], .search-wrap input[type="text"] {
   width: 680px;
   max-width: calc(100% - 40px);
@@ -136,15 +150,18 @@ nav a:hover {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease; /* NUEVO: transición borde */
   text-decoration: none;
   color: #eaeaea;
   display: flex;
   flex-direction: column;
 }
+
+/* 🔹 NUEVO: ilumina el borde cuando se pasa el mouse */
 .video-item:hover {
   transform: translateY(-6px);
   box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+  border-color: rgba(0,188,212,0.4); /* NUEVO: borde iluminado */
 }
 
 /* 🔹 Ajuste para que las imágenes no se recorten: mantenemos contain y centrado */
@@ -160,7 +177,7 @@ nav a:hover {
 .video-item h3 {
   padding: 12px 14px;
   font-size: 1.05em;
-  color: #e6e6e6;
+  color: #e6e6e6; /* <--- acá podés aclarar si querés, ej. #f5f5f5 */
   background: transparent;
   margin: 0;
   text-align: center;
