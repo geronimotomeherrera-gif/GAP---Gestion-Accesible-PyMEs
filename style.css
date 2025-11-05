@@ -1,5 +1,4 @@
 /* === PRELOADER === */
-/* MANTENGO fondo blanco solo para el preloader, tal como pediste */
 #preloader {
   position: fixed;
   top: 0;
@@ -13,13 +12,12 @@
   align-items: center;
   z-index: 9999;
   opacity: 1;
-  transition: opacity 0.8s ease; /* <- esto hace desaparecer suavemente */
+  transition: opacity 0.8s ease;
 }
 
 #preloader img {
   width: 160px;
   opacity: 0;
-  /* mantiene visible el logo tras la animación */
   animation: bounceLogo 3s ease forwards;
 }
 
@@ -32,33 +30,27 @@
   animation: loadBar 3s ease forwards;
 }
 
-/* animaciones de preloader (mantengo las tuyas, pero ahora con opacity final explícito) */
 @keyframes bounceLogo {
   0% { transform: scale(0.5); opacity: 0; }
   20% { transform: scale(1.2); opacity: 1; }
   50% { transform: scale(0.9); opacity: 1; }
   80% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; } /* se mantiene visible */
+  100% { transform: scale(1); opacity: 1; }
 }
-@keyframes loadBar {
-  0% { width: 0%; }
-  100% { width: 100%; }
-}
-@keyframes fadeOut {
-  to { opacity: 0; visibility: hidden; }
-}
+@keyframes loadBar { 0% { width: 0%; } 100% { width: 100%; } }
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
 
-/* === ESTILO GENERAL (tonos oscuros pero con contraste en tarjetas) === */
+/* === ESTILO GENERAL === */
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  background: #0e0e0e;   /* oscuro general */
+  background: #0e0e0e;
   color: #eaeaea;
   line-height: 1.6;
   transition: background 0.18s ease;
 }
 
-/* === HEADER (restauré bordes y estilo parecido al original) === */
+/* === HEADER === */
 header {
   display: flex;
   justify-content: space-between;
@@ -67,13 +59,10 @@ header {
   color: white;
   padding: 10px 40px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  border-bottom: 1px solid rgba(255,255,255,0.03); /* sutil borde restaurado */
+  border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
-.logo {
-  font-size: 1.4em;
-  font-weight: bold;
-}
+.logo { font-size: 1.4em; font-weight: bold; }
 
 nav a {
   color: #f2f2f2;
@@ -82,60 +71,79 @@ nav a {
   font-weight: 500;
   transition: color 0.2s ease;
 }
-nav a:hover {
-  color: #00bcd4;
-}
+nav a:hover { color: #00bcd4; }
 
-/* === BARRA DE BIENVENIDA (ahora contiene el buscador) === */
+/* === BARRA DE BIENVENIDA === */
 .welcome-bar {
-  background: #1b1b1b;   /* tono distinto de las tarjetas para contraste */
+  background: #1b1b1b;
   color: #fdfcfc;
   padding: 16px 30px;
   font-size: 1.05em;
   text-align: left;
 }
 
-/* buscador: mantuve como parte de welcome-bar pero con estilo propio */
+/* === BARRA DE BÚSQUEDA estilo YouTube === */
 .search-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 16px 24px;
   background: #141414;
-  border-bottom: 1px solid rgba(255,255,255,0.02);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-/* 🔍 NUEVO: ícono de lupa al lado del buscador */
+/* contenedor conjunto (input + lupa) */
+.search-container {
+  display: flex;
+  align-items: center;
+  background: #000;
+  border: 1px solid #444;
+  border-radius: 25px;
+  overflow: hidden;
+  width: 720px;
+  max-width: 90%;
+  transition: border-color 0.25s ease;
+  height: 38px;  /* 🔹 ajustá el valor hasta que quede como querés (ej: 36–40px) */
+}
+.search-container:hover,
+.search-container:focus-within {
+  border-color: #777;
+}
+
+/* campo de texto */
+.search-container input[type="search"] {
+  flex: 1;
+  padding: 10px 16px;
+  background: #000;        /* negro o podés usar #0f0f0f */
+  border: none;
+  color: #f1f1f1;          /* texto claro para contraste */
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-container input::placeholder {
+  color: #bbb;             /* gris claro para el texto del placeholder */
+}
+
+
+/* 🔍 icono de lupa (a la derecha dentro del mismo borde) */
 .search-icon {
-  font-size: 1.3rem;
-  color: #e0e0e0;
-  margin-left: 10px;
+  background: #222;
+  color: #fff;
+  padding: 10px 16px;
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #444;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 .search-icon:hover {
-  transform: scale(1.15);
+  background: #333;
   color: #00bcd4;
 }
 
-.search-wrap input[type="search"], .search-wrap input[type="text"] {
-  width: 680px;
-  max-width: calc(100% - 40px);
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.04);
-  background: #0f0f0f;
-  color: #f1f1f1;
-  outline: none;
-  box-shadow: none;
-  transition: box-shadow 0.16s ease, border-color 0.16s ease;
-}
-.search-wrap input:focus {
-  box-shadow: 0 0 10px rgba(0,188,212,0.08);
-  border-color: rgba(0,188,212,0.35);
-}
-
-/* ----------- GRID PRINCIPAL (mantengo la estructura que vos tenías) ----------- */
+/* ----------- GRID PRINCIPAL ----------- */
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -143,48 +151,45 @@ nav a:hover {
   padding: 40px;
 }
 
-/* restauré video-item con borde sutil para que no quede "suelo" */
+/* TARJETAS */
 .video-item {
-  background: #171717;              /* card ligeramente más claro que el fondo */
-  border: 1px solid rgba(255,255,255,0.03); /* borde sutil RESTAURADO */
+  background: #171717;
+  border: 1px solid rgba(255,255,255,0.03);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease; /* NUEVO: transición borde */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
   text-decoration: none;
   color: #eaeaea;
   display: flex;
   flex-direction: column;
+  justify-content: center;  /* 🔹 centra el contenido verticalmente */
 }
-
-/* 🔹 NUEVO: ilumina el borde cuando se pasa el mouse */
 .video-item:hover {
   transform: translateY(-6px);
   box-shadow: 0 10px 26px rgba(0,0,0,0.25);
-  border-color: rgba(0,188,212,0.4); /* NUEVO: borde iluminado */
+  border-color: rgba(0,188,212,0.4);
 }
-
-/* 🔹 Ajuste para que las imágenes no se recorten: mantenemos contain y centrado */
 .video-item img {
   width: 100%;
-  height: 170px;         /* altura razonable para mostrar completas */
-  object-fit: contain;   /* evita recorte */
+  height: 170px;
+  object-fit: contain;
   object-position: center;
-  background: #0f0f0f;   /* relleno oscuro si sobra espacio */
+  background: #0f0f0f;
+  padding-top: 8px;      /* 🔹 deja un espacio arriba de la imagen */
+  box-sizing: border-box; /* 🔹 asegura que el padding no rompa el tamaño */
 }
-
-/* título dentro de la tarjeta (mantengo estilo claro) */
 .video-item h3 {
   padding: 12px 14px;
   font-size: 1.05em;
-  color: #e6e6e6; /* <--- acá podés aclarar si querés, ej. #f5f5f5 */
+  color: #f5f5f5;
   background: transparent;
   margin: 0;
   text-align: center;
   font-weight: 600;
 }
 
-/* === RESULTADOS DE BÚSQUEDA (estilo lista tipo YouTube) === */
+/* === RESULTADOS DE BÚSQUEDA === */
 .search-results {
   padding: 30px 8%;
   display: flex;
@@ -225,10 +230,10 @@ nav a:hover {
   font-size: 0.92em;
 }
 
-/* utilidad: clase hidden para ocultar grilla cuando hay búsqueda */
+/* utilidad */
 .hidden { display: none; }
 
-/* === FOOTER (mantengo el tuyo) === */
+/* === FOOTER === */
 footer {
   background: #111;
   color: #888;
@@ -238,16 +243,26 @@ footer {
   border-top: 1px solid #2a2a2a;
 }
 
-/* ===== reglas adicionales pequeñas que no tocan tu estructura ===== */
-/* transición al cambiar a otra página (se usa la clase body.fade-out en JS) */
-body {
-  transition: opacity 0.28s ease;
-}
+/* transiciones */
+body { transition: opacity 0.28s ease; }
 
-/* responsive: ajuste de la grilla y tamaños en pantallas pequeñas */
+/* responsive */
 @media (max-width: 720px) {
-  .search-wrap input { width: calc(100% - 32px); }
+  .search-container { width: 100%; }
   .video-item img { height: 150px; }
   .result-item img { width: 140px; height: 84px; }
   .search-results { padding-left: 14px; padding-right: 14px; }
+}
+
+/* 🔧 Fuerza color oscuro en la barra de búsqueda */
+.search-container input[type="search"],
+.search-wrap input[type="search"] {
+  background-color: #000 !important;   /* fondo negro */
+  color: #fff !important;              /* texto blanco */
+  border: none !important;
+}
+
+.search-container input::placeholder,
+.search-wrap input::placeholder {
+  color: #aaa !important;              /* texto placeholder gris claro */
 }
