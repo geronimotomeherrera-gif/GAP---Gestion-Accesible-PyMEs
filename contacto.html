@@ -11,6 +11,16 @@
     box-sizing: border-box;
   }
 </style>
+<script>
+  // Corrige la navegación hacia index.html para evitar error 404
+  document.querySelectorAll('a[href="index"], a[href="./index"], a[href="index.html"], a[href="./index.html"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      // Redirige de forma controlada
+      window.location.href = window.location.origin + window.location.pathname.replace(/[^/]*$/, '') + 'index.html';
+    });
+  });
+</script>
 
 </head>
 <body>
